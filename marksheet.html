@@ -1,0 +1,158 @@
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Student Marksheet</title>
+<body>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+        background-color:grey;
+
+        
+    }
+    form {
+        max-width: 600px;
+        margin: auto;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        background-color: #f9f9f9;
+        padding:20px;
+        border-radius:10px;
+        border-width:10px;; 
+        border-color:black;
+	   border-style:double ;
+
+    }
+    input[type="text"], input[type="number"] {
+        width: calc(100% - 20px);
+        padding: 8px;
+        margin: 5px 0;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        font-size: 16px;
+        
+    }
+    input[type="submit"] {
+        background-color: #4CAF50;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 16px;
+    }
+    h2 {
+        text-align: center;
+    }
+    .result {
+        margin-top: 20px;
+        border: 1px solid #ccc;
+        padding: 10px;
+        border-radius: 8px;
+        background-color: #fff;
+    }
+</style>
+</head>
+
+
+<form id="marksheetForm" onsubmit="return calculateMarks(event)">
+    <center><h1>SRI BALAJI UNIVERSITY PUNE </h1></center>
+
+    <h2><u><p style ="color:red;">STUDENT MARKSHEET 2023-2024 </p> </u></h2>
+    <h4><label for="studentName">Student Name:</label></h4>
+    <input type="text" id="studentName" name="studentName" required><br>
+
+    <h4><label for="rollNo">Roll No:</label></h4>
+    <input type="text" id="rollNo" name="rollNo" required><br>
+
+    <h4><label for="class">Class:</label></h4>
+    <input type="text" id="class" name="class" required><br>
+
+    <h4><label for="division">Division:</label></h4>
+    <input type="text" id="division" name="division" required><br>
+
+    <h4><label for="semester">Semester:</label></h4>
+    <input type="text" id="semester" name="semester" required><br>
+
+    <h3>Enter marks of 7 subjects </h3><br>
+
+   <h4><label for="subject1">Core Java Programming:</label></h4>
+    <input type="number" id="subject1" name="subject1" min="0" max="100" required><br>
+
+    <h4><label for="subject2">Data Structure Using C++:</label></h4>
+    <input type="number" id="subject2" name="subject2" min="0" max="100" required><br>
+
+    <h4><label for="subject3">Data Mining and Data Warehousing:</label></h4>
+    <input type="number" id="subject3" name="subject3" min="0" max="100" required><br>
+
+    <h4><label for="subject4">Computer Base Modeling Language:</label></h4>
+    <input type="number" id="subject4" name="subject4" min="0" max="100" required><br>
+
+    <h4><label for="subject5">Cloud Computing Infrastructure and Architecture:</label></h4>
+    <input type="number" id="subject5" name="subject5" min="0" max="100" required><br>
+
+    <h4><label for="subject6">Information Security:</label></h4>
+    <input type="number" id="subject6" name="subject6" min="0" max="100" required><br>
+
+    <h4><label for="subject7">Computer Lab:</label></h4>
+    <input type="number" id="subject7" name="subject7" min="0" max="100" required><br>
+
+    <input type="submit" value="Calculate Total">
+</form>
+
+<div class="result" id="resultSection" style="display: none;">
+    <h2><u><center>Mark Details of Student</center></u></h2>
+    <p><strong>Roll No:</strong> <span id="outputRollNo"></span></p>
+    <p><strong>Name:</strong> <span id="outputName"></span></p>
+    <p><strong>Class:</strong> <span id="outputClass"></span></p>
+    <p><strong>Division:</strong> <span id="outputDivision"></span></p>
+    <p><strong>Total Marks:</strong> <span id="outputTotalMarks"></span></p>
+    <p><strong>Average Marks:</strong> <span id="outputAverageMarks"></span></p>
+    
+</div>
+
+<script>
+function calculateMarks(event) {
+    event.preventDefault(); // Prevent form submission
+       
+
+    // Fetch input values
+    const rollNo = document.getElementById('rollNo').value;
+    const name = document.getElementById('studentName').value;
+    const classValue = document.getElementById('class').value;
+    const division = document.getElementById('division').value;
+
+    const subject1 = parseFloat(document.getElementById('subject1').value);
+    const subject2 = parseFloat(document.getElementById('subject2').value);
+    const subject3 = parseFloat(document.getElementById('subject3').value);
+    const subject4 = parseFloat(document.getElementById('subject4').value);
+    const subject5 = parseFloat(document.getElementById('subject5').value);
+    const subject6 = parseFloat(document.getElementById('subject6').value);
+    const subject7 = parseFloat(document.getElementById('subject7').value);
+
+    // Calculate total and average marks
+    const totalMarks = subject1 + subject2 + subject3 + subject4 + subject5 + subject6 + subject7;
+    const averageMarks=totalMarks/7;
+
+           
+       
+
+    // Display result
+    document.getElementById('outputRollNo').textContent = rollNo;
+    document.getElementById('outputName').textContent = name;
+    document.getElementById('outputClass').textContent = classValue;
+    document.getElementById('outputDivision').textContent = division;
+    document.getElementById('outputTotalMarks').textContent = totalMarks.toFixed(2);
+    document.getElementById('outputAverageMarks').textContent = averageMarks.toFixed(2)
+
+
+    
+    document.getElementById('resultSection').style.display = 'block';
+}
+</script>
+</body>
+</html>
